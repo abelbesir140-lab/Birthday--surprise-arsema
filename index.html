@@ -1,218 +1,1362 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday ❤️</title>
+<meta name="theme-color" content="#ff4f91">
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<title>For My Beautiful Girl ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 
-body{
-background:linear-gradient(135deg,#ff5f9e,#ff9ac8);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
-color:white;
+* {
+    box-sizing: border-box;
 }
 
-.card{
-width:90%;
-max-width:420px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(12px);
-padding:30px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 15px 35px rgba(0,0,0,.2);
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
 }
 
-.hidden{display:none;}
-
-button{
-padding:14px 25px;
-margin:10px;
-border:none;
-border-radius:30px;
-font-size:18px;
-cursor:pointer;
-transition:.3s;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at top, #ffb6d5, #ff4f91 45%, #7c1648);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-#yes{
-background:#fff;
-color:#ff3f86;
-font-weight:bold;
+
+/* FLOATING HEARTS */
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
 }
 
-#no{
-background:#ff3f86;
-color:white;
-position:relative;
+.heart {
+    position: absolute;
+    bottom: -50px;
+    animation: floatHeart linear infinite;
+    opacity: 0.7;
 }
 
-select{
-padding:12px;
-font-size:16px;
-margin-top:15px;
-width:100%;
-border-radius:10px;
-border:none;
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
-h1,h2,h3,p{
-margin:15px 0;
+
+/* MUSIC BUTTON */
+
+.music-button {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 50;
+
+    width: 50px;
+    height: 50px;
+
+    padding: 0;
+    margin: 0;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+
+    background: rgba(0,0,0,0.3);
+
+    color: white;
+    font-size: 21px;
+
+    cursor: pointer;
 }
+
+
+/* MAIN */
+
+.container {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 30px 22px;
+
+    border-radius: 30px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.14);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+
+/* TEXT */
+
+h1 {
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 27px;
+    margin: 10px 0 20px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* PAGES */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: pageIn 0.6s ease;
+}
+
+@keyframes pageIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* BUTTONS */
+
+button {
+    border: none;
+
+    padding: 14px 22px;
+    margin: 8px;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.25s ease;
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+.primary {
+    background: white;
+    color: #ff3f83;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.primary:hover {
+    transform: scale(1.06);
+}
+
+
+/* YES / NO */
+
+#yesButton {
+    background: white;
+    color: #ff2877;
+}
+
+#noButton {
+    background: #c92761;
+    color: white;
+}
+
+
+/* OPTIONS */
+
+.options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.option {
+    width: 100%;
+
+    margin: 0;
+    padding: 10px;
+
+    color: white;
+
+    background: rgba(255,255,255,0.13);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    border-radius: 20px;
+}
+
+.option:hover {
+    transform: translateY(-5px);
+}
+
+.option img {
+    width: 100%;
+    height: 125px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    display: block;
+
+    margin-bottom: 8px;
+}
+
+
+/* MUSIC OPTION */
+
+.music-option-icon {
+    height: 125px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 65px;
+
+    margin-bottom: 8px;
+}
+
+
+/* RESULT PHOTO */
+
+.result-photo {
+    width: 100%;
+
+    max-width: 340px;
+    max-height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 22px;
+
+    display: block;
+
+    margin: 15px auto;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+
+/* LOVE LETTER */
+
+.letter {
+    background: rgba(255,255,255,0.12);
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    text-align: left;
+
+    line-height: 1.8;
+}
+
+.letter p {
+    font-size: 16px;
+}
+
+
+/* HEART */
+
+.big-heart {
+    font-size: 75px;
+
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+
+    top: -20px;
+
+    width: 9px;
+    height: 9px;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+
+/* MOBILE */
+
+@media(max-width:400px) {
+
+    .card {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .option img,
+    .music-option-icon {
+        height: 105px;
+    }
+
+    .music-option-icon {
+        font-size: 55px;
+    }
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- FLOATING HEARTS -->
+
+<div class="hearts" id="hearts"></div>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- MUSIC CONTROL -->
+
+<button
+    class="music-button"
+    id="musicButton"
+    onclick="toggleMusic()">
+
+    🔇
+
+</button>
+
+
+
+<div class="container">
 
 <div class="card">
 
-<div id="page1">
 
-<h1>🎂 Happy Birthday ❤️</h1>
+<!-- =====================================
+     PAGE 1 — OPENING
+===================================== -->
 
-<p>
-To the most beautiful girl...
-I made something only for you.
-</p>
+<div class="page active" id="page1">
 
-<button onclick="start()">
-Open My Surprise 🎁
-</button>
+    <div style="font-size:70px">
+        🎂
+    </div>
 
-</div>
+    <h1>
+        Happy Birthday ❤️
+    </h1>
 
-<div id="page2" class="hidden">
+    <p>
+        Hey beautiful...
+    </p>
 
-<h2>Choose your birthday gift 💝</h2>
+    <p>
+        I made a little world
+        just for you.
+    </p>
 
-<select id="gift">
-<option>🛍️ Shopping Spree</option>
-<option>🍽️ Romantic Dinner</option>
-<option>🌹 Flowers & Chocolate</option>
-<option>🎬 Movie Night</option>
-<option>🎁 Mystery Surprise</option>
-</select>
+    <button
+        class="primary"
+        onclick="startSurprise()">
 
-<br><br>
+        Open Your Surprise 🎁
 
-<button onclick="giftChosen()">
-Continue ❤️
-</button>
-
-</div>
-
-<div id="page3" class="hidden">
-
-<h2 id="giftText"></h2>
-
-<p>
-Now one last question...
-</p>
-
-<h3>
-Will you let me keep spoiling you every birthday? ❤️
-</h3>
-
-<button id="yes">
-YES ❤️
-</button>
-
-<button id="no">
-NO 🙈
-</button>
+    </button>
 
 </div>
 
-<div id="page4" class="hidden">
 
-<h1>🥹❤️</h1>
 
-<h2>
-I knew you'd say YES.
-</h2>
+<!-- =====================================
+     PAGE 2 — QUESTION
+===================================== -->
 
-<p>
-Happy Birthday, my love.
+<div class="page" id="page2">
 
-Thank you for making my life brighter every single day.
+    <div style="font-size:60px">
+        💗
+    </div>
 
-I hope today is as beautiful as you are.
+    <h2>
+        One little question...
+    </h2>
 
-I love you. ❤️
-</p>
+    <p>
+        Will you let me keep
+        making you smile?
+    </p>
+
+
+    <div
+        id="yesNoArea"
+        style="
+        height:150px;
+        position:relative;
+        ">
+
+        <button
+            id="yesButton"
+            onclick="sayYes()">
+
+            YES ❤️
+
+        </button>
+
+
+        <button
+            id="noButton"
+            onclick="runAway()">
+
+            NO 🙈
+
+        </button>
+
+    </div>
 
 </div>
 
+
+
+<!-- =====================================
+     PAGE 3 — ALL OPTIONS
+===================================== -->
+
+<div class="page" id="page3">
+
+    <div style="font-size:60px">
+        🎁
+    </div>
+
+    <h2>
+        Choose Your Surprise
+    </h2>
+
+    <p>
+        Pick one and explore it.
+        You can always choose another. ❤️
+    </p>
+
+
+    <div class="options">
+
+
+        <!-- LOVE LETTER -->
+
+        <button
+            class="option"
+            onclick="chooseOption(
+            'Love Letter',
+            'images/love-letter.jpg',
+            '💌 Love Letter'
+            )">
+
+            <img
+                src="images/love-letter.jpg"
+                alt="Love Letter">
+
+            💌 Love Letter
+
+        </button>
+
+
+
+        <!-- FLOWERS -->
+
+        <button
+            class="option"
+            onclick="chooseOption(
+            'Flowers',
+            'images/flowers.jpg',
+            '🌹 Flowers'
+            )">
+
+            <img
+                src="images/flowers.jpg"
+                alt="Flowers">
+
+            🌹 Flowers
+
+        </button>
+
+
+
+        <!-- GIFT -->
+
+        <button
+            class="option"
+            onclick="chooseOption(
+            'Gift',
+            'images/gift.jpg',
+            '🎁 Gift'
+            )">
+
+            <img
+                src="images/gift.jpg"
+                alt="Gift">
+
+            🎁 Gift
+
+        </button>
+
+
+
+        <!-- BIRTHDAY WISH -->
+
+        <button
+            class="option"
+            onclick="chooseOption(
+            'Birthday Wish',
+            'images/wish.jpg',
+            '✨ Birthday Wish'
+            )">
+
+            <img
+                src="images/wish.jpg"
+                alt="Birthday Wish">
+
+            ✨ Birthday Wish
+
+        </button>
+
+
+
+        <!-- MUSIC — NO PHOTO -->
+
+        <button
+            class="option"
+            onclick="chooseOption(
+            'Music',
+            '',
+            '🎵 Music'
+            )">
+
+            <div class="music-option-icon">
+                🎵
+            </div>
+
+            🎵 Music
+
+        </button>
+
+
+    </div>
+
 </div>
+
+
+
+<!-- =====================================
+     PAGE 4 — SELECTED OPTION
+===================================== -->
+
+<div class="page" id="page4">
+
+    <h2 id="choiceTitle">
+        You Chose ❤️
+    </h2>
+
+
+    <img
+        id="choiceImage"
+        class="result-photo"
+        src=""
+        alt="Selected surprise">
+
+
+    <h3 id="choiceName">
+    </h3>
+
+
+    <p id="choiceDescription">
+    </p>
+
+
+    <!-- CHOOSE ANOTHER -->
+
+    <button
+        class="primary"
+        onclick="chooseAnother()">
+
+        🎁 Choose Another
+
+    </button>
+
+
+    <!-- FINISH -->
+
+    <button
+        class="primary"
+        onclick="finishSurprise()">
+
+        💌 Finish Surprise
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================
+     PAGE 5 — LOVE LETTER / FINISH
+===================================== -->
+
+<div class="page" id="page5">
+
+    <div class="big-heart">
+        ❤️
+    </div>
+
+    <h1>
+        For You
+    </h1>
+
+
+    <div class="letter">
+
+        <p>
+            My beautiful girl,
+        </p>
+
+        <p>
+            Today is your birthday,
+            but I feel like I'm the one
+            who received the greatest gift
+            when you came into my life.
+        </p>
+
+        <p>
+            I hope this little surprise
+            reminds you how special you
+            are to me.
+        </p>
+
+        <p>
+            I wish you happiness,
+            beautiful memories,
+            success, and everything
+            your heart desires.
+        </p>
+
+        <p>
+            No matter how many birthdays
+            come and go, I hope I get to
+            be there to celebrate them
+            with you.
+        </p>
+
+        <p>
+            Happy Birthday,
+            my love. ❤️
+        </p>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        class="primary"
+        onclick="showFinal()">
+
+        One Last Surprise ✨
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================
+     PAGE 6 — FINAL
+===================================== -->
+
+<div class="page" id="page6">
+
+    <div class="big-heart">
+        💖
+    </div>
+
+
+    <h1>
+        Happy Birthday ❤️
+    </h1>
+
+
+    <h2>
+        My Beautiful Girl
+    </h2>
+
+
+    <p>
+        May your birthday be
+        as beautiful as your smile.
+    </p>
+
+
+    <p>
+        May you always have
+        reasons to laugh.
+    </p>
+
+
+    <p>
+        And may I be lucky enough
+        to make you smile for many
+        more birthdays. 🥹❤️
+    </p>
+
+
+    <h2>
+        I Love You ❤️
+    </h2>
+
+
+    <p>
+        Forever and always.
+    </p>
+
+
+    <div style="font-size:45px">
+        🎂🌹🎁💌🎵
+    </div>
+
+</div>
+
+
+</div>
+</div>
+
+
 
 <script>
 
-function start(){
-page1.classList.add("hidden");
-page2.classList.remove("hidden");
-}
 
-function giftChosen(){
+/* =====================================
+   PAGE SYSTEM
+===================================== */
 
-page2.classList.add("hidden");
+function showPage(number) {
 
-page3.classList.remove("hidden");
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page) {
 
-giftText.innerHTML="You picked:<br><br>"+gift.value+" ❤️";
+            page.classList.remove("active");
 
-confetti({
-particleCount:150,
-spread:90
-});
+        });
 
-}
 
-yes.onclick=function(){
-
-page3.classList.add("hidden");
-
-page4.classList.remove("hidden");
-
-confetti({
-particleCount:300,
-spread:180
-});
+    document
+        .getElementById("page" + number)
+        .classList.add("active");
 
 }
 
-const no=document.getElementById("no");
 
-const funny=[
-"Are you sure? 🥺",
-"Wrong answer 😂",
-"Try again 😏",
-"Nice try ❤️",
-"Nope 🤭"
+
+/* =====================================
+   MUSIC
+===================================== */
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+let musicPlaying = false;
+
+
+
+function startMusic() {
+
+    music
+        .play()
+        .then(function() {
+
+            musicPlaying = true;
+
+            musicButton.innerHTML = "🎵";
+
+        })
+        .catch(function() {
+
+            musicPlaying = false;
+
+            musicButton.innerHTML = "🔇";
+
+        });
+
+}
+
+
+
+function toggleMusic() {
+
+    if (musicPlaying) {
+
+        music.pause();
+
+        musicPlaying = false;
+
+        musicButton.innerHTML = "🔇";
+
+    }
+
+    else {
+
+        music
+            .play()
+            .then(function() {
+
+                musicPlaying = true;
+
+                musicButton.innerHTML = "🎵";
+
+            });
+
+    }
+
+}
+
+
+
+/* =====================================
+   OPEN SURPRISE
+===================================== */
+
+function startSurprise() {
+
+    startMusic();
+
+    createConfetti(100);
+
+    showPage(2);
+
+}
+
+
+
+/* =====================================
+   YES BUTTON
+===================================== */
+
+function sayYes() {
+
+    createConfetti(180);
+
+    showPage(3);
+
+}
+
+
+
+/* =====================================
+   NO BUTTON
+===================================== */
+
+const noButton =
+    document.getElementById("noButton");
+
+const yesButton =
+    document.getElementById("yesButton");
+
+const yesNoArea =
+    document.getElementById("yesNoArea");
+
+
+let noClicks = 0;
+
+
+const funnyMessages = [
+
+    "Are you sure? 🥺",
+
+    "Think again 😭",
+
+    "Nice try 😂",
+
+    "Nope 😏",
+
+    "Try YES ❤️",
+
+    "You can't escape 😌",
+
+    "Wrong answer 🤭"
+
 ];
 
-let i=0;
 
-no.onclick=function(){
+function runAway() {
 
-no.innerHTML=funny[i%funny.length];
+    noClicks++;
 
-i++;
 
-yes.style.transform="scale("+(1+i*0.15)+")";
+    noButton.innerText =
+        funnyMessages[
+            noClicks % funnyMessages.length
+        ];
 
-no.style.position="absolute";
 
-no.style.left=Math.random()*70+"%";
+    /* Make YES bigger */
 
-no.style.top=Math.random()*70+"%";
+    yesButton.style.transform =
+        "scale(" +
+        (1 + noClicks * 0.12) +
+        ")";
+
+
+    /* Move NO */
+
+    const maxX =
+        Math.max(
+            0,
+            yesNoArea.clientWidth -
+            noButton.offsetWidth
+        );
+
+
+    const maxY =
+        Math.max(
+            0,
+            yesNoArea.clientHeight -
+            noButton.offsetHeight
+        );
+
+
+    const x =
+        Math.random() * maxX;
+
+
+    const y =
+        Math.random() * maxY;
+
+
+    noButton.style.position =
+        "absolute";
+
+
+    noButton.style.left =
+        x + "px";
+
+
+    noButton.style.top =
+        y + "px";
+
+}
+
+
+
+/* =====================================
+   SELECT AN OPTION
+===================================== */
+
+let selectedOption = "";
+
+
+function chooseOption(
+    name,
+    image,
+    displayName
+) {
+
+    selectedOption = name;
+
+
+    /* Title */
+
+    document
+        .getElementById("choiceTitle")
+        .innerHTML =
+        "You Chose ❤️";
+
+
+    /* Photo */
+
+    const choiceImage =
+        document.getElementById("choiceImage");
+
+
+    if (image === "") {
+
+        /* Music has no photo */
+
+        choiceImage.style.display =
+            "none";
+
+    }
+
+    else {
+
+        choiceImage.style.display =
+            "block";
+
+        choiceImage.src =
+            image;
+
+    }
+
+
+    /* Name */
+
+    document
+        .getElementById("choiceName")
+        .innerHTML =
+        displayName;
+
+
+    /* Descriptions */
+
+    const descriptions = {
+
+        "Love Letter":
+        "A little piece of my heart, written just for you. 💌",
+
+        "Flowers":
+        "Because even the most beautiful flowers aren't as beautiful as you. 🌹",
+
+        "Gift":
+        "A little something chosen with love, just for my favorite girl. 🎁",
+
+        "Birthday Wish":
+        "My wish is simple: may you always be happy, loved and surrounded by beautiful moments. ✨",
+
+        "Music":
+        "A song for you, because sometimes music says what words can't. 🎵"
+
+    };
+
+
+    document
+        .getElementById("choiceDescription")
+        .innerHTML =
+        descriptions[name];
+
+
+    /* Start music when Music is selected */
+
+    if (name === "Music") {
+
+        startMusic();
+
+    }
+
+
+    createConfetti(120);
+
+    showPage(4);
+
+}
+
+
+
+/* =====================================
+   CHOOSE ANOTHER
+===================================== */
+
+function chooseAnother() {
+
+    showPage(3);
+
+}
+
+
+
+/* =====================================
+   FINISH SURPRISE
+===================================== */
+
+function finishSurprise() {
+
+    createConfetti(200);
+
+    showPage(5);
+
+}
+
+
+
+/* =====================================
+   FINAL SURPRISE
+===================================== */
+
+function showFinal() {
+
+    createConfetti(300);
+
+    showPage(6);
+
+}
+
+
+
+/* =====================================
+   CONFETTI
+===================================== */
+
+function createConfetti(amount) {
+
+    const confettiColors = [
+
+        "#ff4f91",
+        "#ffffff",
+        "#ffd166",
+        "#ff6b6b",
+        "#c77dff",
+        "#4cc9f0"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const piece =
+            document.createElement("div");
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.background =
+            confettiColors[
+                Math.floor(
+                    Math.random() *
+                    confettiColors.length
+                )
+            ];
+
+
+        piece.style.width =
+            (
+                Math.random() * 8 + 5
+            ) + "px";
+
+
+        piece.style.height =
+            (
+                Math.random() * 8 + 5
+            ) + "px";
+
+
+        piece.style.animationDuration =
+            (
+                Math.random() * 2 + 2
+            ) + "s";
+
+
+        document
+            .body
+            .appendChild(piece);
+
+
+        setTimeout(function() {
+
+            piece.remove();
+
+        }, 4000);
+
+    }
+
+}
+
+
+
+/* =====================================
+   FLOATING HEARTS
+===================================== */
+
+const heartsContainer =
+    document.getElementById("hearts");
+
+
+const heartSymbols = [
+
+    "❤️",
+    "💕",
+    "💗",
+    "💖",
+    "💘"
+
+];
+
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.className =
+        "heart";
+
+
+    heart.innerHTML =
+        heartSymbols[
+            Math.floor(
+                Math.random() *
+                heartSymbols.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+
+    heart.style.fontSize =
+        (
+            Math.random() * 18 + 12
+        ) + "px";
+
+
+    heart.style.animationDuration =
+        (
+            Math.random() * 5 + 5
+        ) + "s";
+
+
+    heartsContainer
+        .appendChild(heart);
+
+
+    setTimeout(function() {
+
+        heart.remove();
+
+    }, 11000);
+
+}
+
+
+setInterval(
+    createHeart,
+    600
+);
+
+
+for (
+    let i = 0;
+    i < 10;
+    i++
+) {
+
+    setTimeout(
+        createHeart,
+        i * 300
+    );
 
 }
 
